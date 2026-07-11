@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#f8fafc"/>
+  <text x="80" y="70" font-size="32" font-family="Segoe UI, Arial" font-weight="700" fill="#0f172a">TaskMatrix ERD</text>
+  <text x="80" y="110" font-size="18" font-family="Segoe UI, Arial" fill="#475569">MongoDB collection relationships for users, projects, tasks, and activities</text>
+
+  <rect x="100" y="180" width="220" height="150" rx="16" fill="white" stroke="#cbd5e1"/>
+  <text x="140" y="220" font-size="20" font-family="Segoe UI, Arial" font-weight="700" fill="#0f172a">Users</text>
+  <text x="120" y="255" font-size="16" font-family="Segoe UI, Arial" fill="#334155">_id</text>
+  <text x="120" y="282" font-size="16" font-family="Segoe UI, Arial" fill="#334155">name, email, role</text>
+
+  <rect x="420" y="180" width="220" height="150" rx="16" fill="white" stroke="#cbd5e1"/>
+  <text x="470" y="220" font-size="20" font-family="Segoe UI, Arial" font-weight="700" fill="#0f172a">Projects</text>
+  <text x="440" y="255" font-size="16" font-family="Segoe UI, Arial" fill="#334155">_id</text>
+  <text x="440" y="282" font-size="16" font-family="Segoe UI, Arial" fill="#334155">title, owner, status</text>
+
+  <rect x="740" y="180" width="220" height="150" rx="16" fill="white" stroke="#cbd5e1"/>
+  <text x="800" y="220" font-size="20" font-family="Segoe UI, Arial" font-weight="700" fill="#0f172a">Tasks</text>
+  <text x="760" y="255" font-size="16" font-family="Segoe UI, Arial" fill="#334155">_id</text>
+  <text x="760" y="282" font-size="16" font-family="Segoe UI, Arial" fill="#334155">title, status, priority</text>
+
+  <rect x="1060" y="180" width="220" height="150" rx="16" fill="white" stroke="#cbd5e1"/>
+  <text x="1100" y="220" font-size="20" font-family="Segoe UI, Arial" font-weight="700" fill="#0f172a">Activities</text>
+  <text x="1080" y="255" font-size="16" font-family="Segoe UI, Arial" fill="#334155">_id</text>
+  <text x="1080" y="282" font-size="16" font-family="Segoe UI, Arial" fill="#334155">action, user, task</text>
+
+  <line x1="320" y1="255" x2="420" y2="255" stroke="#64748b" stroke-width="3"/>
+  <text x="330" y="245" font-size="14" font-family="Segoe UI, Arial" fill="#64748b">owns</text>
+
+  <line x1="640" y1="255" x2="740" y2="255" stroke="#64748b" stroke-width="3"/>
+  <text x="650" y="245" font-size="14" font-family="Segoe UI, Arial" fill="#64748b">belongs to</text>
+
+  <line x1="960" y1="255" x2="1060" y2="255" stroke="#64748b" stroke-width="3"/>
+  <text x="970" y="245" font-size="14" font-family="Segoe UI, Arial" fill="#64748b">tracks</text>
+
+  <rect x="360" y="520" width="650" height="220" rx="20" fill="white" stroke="#cbd5e1"/>
+  <text x="390" y="565" font-size="22" font-family="Segoe UI, Arial" font-weight="700" fill="#0f172a">Relationships</text>
+  <text x="390" y="610" font-size="16" font-family="Segoe UI, Arial" fill="#334155">• Users → many Projects (owner)</text>
+  <text x="390" y="645" font-size="16" font-family="Segoe UI, Arial" fill="#334155">• Projects → many Tasks</text>
+  <text x="390" y="680" font-size="16" font-family="Segoe UI, Arial" fill="#334155">• Tasks → many Activities</text>
+  <text x="390" y="715" font-size="16" font-family="Segoe UI, Arial" fill="#334155">• Users → many Activities</text>
+</svg>

@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 
@@ -26,11 +27,18 @@ app.use("/api/activities", activityRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
 
+const clientBuildPath = path.join(__dirname, "..", "client", "dist");
+app.use(express.static(clientBuildPath));
+
 app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "TaskMatrix API is running successfully",
-  });
+  res.sendFile(path.join(clientBuildPath, "index.html"));
+});
+
+app.get("/*", (req, res) => {
+  if (req.path.startsWith("/api/")) {
+    return res.status(404).json({ success: false, message: "API route not found" });
+  }
+  res.sendFile(path.join(clientBuildPath, "index.html"));
 });
 
 const PORT = process.env.PORT || 5000;

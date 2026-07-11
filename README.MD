@@ -96,3 +96,32 @@ Figma Link: https://www.figma.com/
 - Deadline reminders and cron-based notifications
 - Advanced role management and permissions
 - Real-time collaboration updates
+
+## Deployment
+### Local deployment
+1. Install dependencies: `npm install`
+2. Build the frontend: `npm run build`
+3. Start the backend: `npm start`
+4. Open `http://localhost:5000`
+
+### Development mode
+- Start both services: `npm run dev`
+
+### Vercel frontend deployment
+- Use the repo root and Vercel will deploy the `client/` app using `vercel.json`.
+- Vercel build output is served from `client/dist`.
+- Set this environment variable in Vercel: `VITE_API_URL=https://<your-render-host>/api`
+- The app will use `http://localhost:5000/api` locally when `VITE_API_URL` is not set.
+
+### Render backend deployment
+- Use `render.yaml` to deploy the backend service from the repo root.
+- Build command: `cd server && npm install`
+- Start command: `cd server && npm start`
+- Set environment variables in Render:
+  - `MONGODB_URI`
+  - `JWT_SECRET`
+  - `PORT` (optional)
+
+### Notes
+- Backend uses `server/server.js` and serves the built frontend from `client/dist` in production.
+- The frontend calls the API at `VITE_API_URL`, so configure it to point to your Render service.

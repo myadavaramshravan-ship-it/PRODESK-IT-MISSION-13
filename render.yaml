@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: TaskMatrix Backend
+    env: node
+    plan: free
+    branch: main
+    buildCommand: "npm install --prefix server"
+    startCommand: "npm start --prefix server"
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: PORT
+        value: "5000"

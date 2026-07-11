@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 
 function Activity() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -11,6 +12,9 @@ function Activity() {
   useEffect(() => {
     fetchActivities();
   }, []);
+
+  const toggleSidebar = () => setSidebarOpen((open) => !open);
+  const closeSidebar = () => setSidebarOpen(false);
 
   const fetchActivities = async () => {
     try {
@@ -25,10 +29,10 @@ function Activity() {
 
   return (
     <div className="dashboard-container">
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
 
       <div className="main-content">
-        <Navbar />
+        <Navbar onToggle={toggleSidebar} />
 
         <div className="page">
           <h1>Activity Feed</h1>

@@ -5,9 +5,13 @@ import DashboardCard from "../components/DashboardCard";
 import API from "../api/axios";
 
 function Dashboard() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const toggleSidebar = () => setSidebarOpen((open) => !open);
+  const closeSidebar = () => setSidebarOpen(false);
 
   useEffect(() => {
     const fetchDashboard = async () => {
@@ -27,9 +31,9 @@ function Dashboard() {
   if (loading) {
     return (
       <div className="dashboard-container">
-        <Sidebar />
+        <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
         <div className="main-content">
-          <Navbar />
+          <Navbar onToggle={toggleSidebar} />
           <div className="page">
             <h2>Loading dashboard...</h2>
           </div>
@@ -41,9 +45,9 @@ function Dashboard() {
   if (error) {
     return (
       <div className="dashboard-container">
-        <Sidebar />
+        <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
         <div className="main-content">
-          <Navbar />
+          <Navbar onToggle={toggleSidebar} />
           <div className="page">
             <h2>{error}</h2>
           </div>
@@ -54,10 +58,10 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
 
       <div className="main-content">
-        <Navbar />
+        <Navbar onToggle={toggleSidebar} />
 
         <div className="cards">
           <DashboardCard title="Projects" value={dashboardData?.totalProjects ?? 0} />

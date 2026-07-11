@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 
 function Tasks() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,6 +31,9 @@ function Tasks() {
       setLoading(false);
     }
   };
+
+  const toggleSidebar = () => setSidebarOpen((open) => !open);
+  const closeSidebar = () => setSidebarOpen(false);
 
   const fetchProjects = async () => {
     try {
@@ -114,10 +118,10 @@ function Tasks() {
 
   return (
     <div className="dashboard-container">
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
 
       <div className="main-content">
-        <Navbar />
+        <Navbar onToggle={toggleSidebar} />
 
         <div className="page">
           <h1>My Tasks</h1>

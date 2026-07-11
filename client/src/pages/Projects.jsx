@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 
 function Projects() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [projects, setProjects] = useState([]);
 
   const [title, setTitle] = useState("");
@@ -13,6 +14,9 @@ function Projects() {
   useEffect(() => {
     fetchProjects();
   }, []);
+
+  const toggleSidebar = () => setSidebarOpen((open) => !open);
+  const closeSidebar = () => setSidebarOpen(false);
 
   const fetchProjects = async () => {
     try {
@@ -78,10 +82,10 @@ function Projects() {
 
   return (
     <div className="dashboard-container">
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
 
       <div className="main-content">
-        <Navbar />
+        <Navbar onToggle={toggleSidebar} />
 
         <div className="page">
           <h1>Projects</h1>
